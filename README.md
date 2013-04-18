@@ -1,16 +1,37 @@
-###Project to get my feet wet with [Twisted](twistedmatrix.com) and learn more about event-driven programming.  *This project is currently incomplete!*
+###An event-based web scraper that checks to see whether a given keyword appears on the page.
+
+*This project is currently incomplete!*
 
 ####Overview
-The Twisted client makes an asynchronous request to a Twisted server with a url and keyword.  The server scrapes the webpage, searches for the keyword within the scraped html, and sends a response back to the client about whether the url contained that keyword.
+The program uses [Twisted](twistedmatrix.com) to make requests, scrape web pages, and return reponses to the client.
 
-I also added a very minimal Flask application (checker.py), which lets users submit a url and keyword, makes requests to the Twisted server, and then displays the result of the search.
+I added a simple web interface using Flask which provides form fields for a url and keyword, and then makes an asynchronous request to the Twisted server under the hood.
 
-####Useage
-Twisted must be installed to run client.py and scraper.py
-Flask must be installed to run checker.py
+####Requirements
+- Twisted
+- Flask (to use the web interface)
 
-For either the client or the flask app, scraper must be running first.  Enter python scraper.py on the command line.
-To run the flask app, run python checker.py and visit http://localhost:5000.
+####Usage
+To run either the client or the web interface, the scraper must be running first.  
+
+To get the web interface:
+```
+$ python scraper.py # Listens on port 8000
+$ python checker.py # Runs the app on localhost:5000
+```
+To run a single client task:
+```
+$ python scraper.py
+$ python client.py
+```
+
+####How to Test
+Testing uses the built-in Twisted testing framework, [trial](http://twistedmatrix.com/trac/wiki/TwistedTrial), which extends the Python unittest module and provides support for evented testing.  Trial comes preloaded with Twisted.
+
+To run tests:
+```
+trial test_server_sync.py test_server_async.py <any additional test files>
+```
 
 ####Problems and to-dos
 - Flask is not currently well-integrated into the Twisted aspect of the project
