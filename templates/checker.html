@@ -1,0 +1,30 @@
+<!doctype html>
+<head>
+    <title>Checker</title>
+</head>
+
+<body>
+    <div id='events'>
+        <h1>your events</h1>
+        <ul id='event_list'>
+            {% for url, kws in events.iteritems() %}
+                <ul>{{url}}</ul>
+                {% for kw, match in kws.items() %}
+                    {% if match %}
+                        <li>{{kw}} was found!</li>
+                    {% else %}
+                        <li>{{kw}} was not found</li>
+                    {% endif %}
+                {% endfor %}    
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div id='add_new'>
+        <h1><a href='/login'>add new events</a></h1>
+    </div>
+
+</body>
+</html>
+
+
